@@ -21,6 +21,7 @@ public class ContactDetails {
   private ContactDetailsType contactType;
   private String contactInfo;
   @ManyToOne
+  @JoinColumn(name = "credit_card", referencedColumnName = "card_number")
   private CreditCard creditCard;
 
 
