@@ -1,1 +1,6 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
 rootProject.name = 'erste-credit-card-registry-project'

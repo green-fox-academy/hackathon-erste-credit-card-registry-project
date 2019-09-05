@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.1.7.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
+    id 'org.flywaydb.flyway' version '5.2.4'
 }
 
 group = 'com.greenfoxacademy'
@@ -19,7 +20,13 @@ repositories {
     mavenCentral()
 }
 
+flyway {
+    url = System.getenv("DATASOURCE_URL")
+    user = 'sa'
+}
+
 dependencies {
+    runtimeOnly 'com.h2database:h2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -33,4 +40,5 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'org.flywaydb:flyway-core:5.2.4'
 }
