@@ -75,7 +75,7 @@ public class CreditCardServiceImpl implements CreditCardService {
     List<ContactDetails> contactDetails = ContactDetailsUtil.transformDtoToContact(creditCardInputDTO.getContact());
     CreditCardType creditCardType = CreditCardType.valueOf(creditCardInputDTO.getType().toUpperCase());
     CreditCard resultCard =  new CreditCard(creditCardInputDTO.getCardNumber(),creditCardType,
-               creditCardInputDTO.getValidThru(),hash, true, creditCardInputDTO.getOwner(), contactDetails);
+               creditCardInputDTO.getValidThru(),hash, false, creditCardInputDTO.getOwner(), contactDetails);
     contactDetailsService.setCreditCardToContactList(contactDetails, resultCard);
     return resultCard;
   }
