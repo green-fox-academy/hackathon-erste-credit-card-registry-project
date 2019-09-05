@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ContactDetailsService {
   List<ContactDetails> findAllContact();
-  ContactDetails findContactById();
+  ContactDetails findContactById(Long id);
   void saveContact(ContactDetails contactDetails);
   void deleteContact(ContactDetails contactDetails);
 }

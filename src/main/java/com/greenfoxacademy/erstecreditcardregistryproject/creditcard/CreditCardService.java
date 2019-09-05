@@ -13,4 +13,5 @@ public interface CreditCardService {
   void saveCard(CreditCard creditCard);
 
   void deleteCard(CreditCard creditCard);
+  ResponseEntity registerCard(CreditCardInputDTO creditCardInputDTO);
 }

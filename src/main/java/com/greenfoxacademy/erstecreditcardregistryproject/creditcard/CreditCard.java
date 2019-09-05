@@ -1,6 +1,8 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetails;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -45,6 +47,7 @@ public class CreditCard {
 
   public CreditCard(String cardNumber) {
     this.cardNumber = cardNumber;
+    this.contact = new ArrayList<>();
   }
 
   public CreditCard(String cardNumber, CreditCardType cardType, String validThru, String hashCode,
