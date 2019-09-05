@@ -6,11 +6,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 @Service
 @NoArgsConstructor
 public class ContactDetailsServiceImpl implements ContactDetailsService{
   @Autowired
   private ContactDetailsRepository contactDetailsRepository;
+
+  public ContactDetailsServiceImpl(ContactDetailsRepository contactDetailsRepository) {
+    this.contactDetailsRepository = contactDetailsRepository;
+  }
 
   @Override
   public List<ContactDetails> findAllContact() {
@@ -24,11 +30,9 @@ public class ContactDetailsServiceImpl implements ContactDetailsService{
 
   @Override
   public void saveContact(ContactDetails contactDetails) {
-
   }
 
   @Override
   public void deleteContact(ContactDetails contactDetails) {
-
   }
 }

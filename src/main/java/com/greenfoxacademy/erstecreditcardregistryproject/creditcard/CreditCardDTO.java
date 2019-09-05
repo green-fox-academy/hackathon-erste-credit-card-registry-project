@@ -1,11 +1,12 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetails;
+
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter

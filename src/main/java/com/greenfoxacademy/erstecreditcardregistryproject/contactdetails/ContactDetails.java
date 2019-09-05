@@ -24,7 +24,7 @@ public class ContactDetails {
   private CreditCard creditCard;
 
 
-  public ContactDetails(ContactDetailsType contactType, String contactInfo){
+  public ContactDetails(ContactDetailsType contactType, String contactInfo) {
     this.contactType = contactType;
     this.contactInfo = contactInfo;
   }

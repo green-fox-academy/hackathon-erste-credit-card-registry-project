@@ -12,7 +12,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 @NoArgsConstructor
-public class CreditCardServiceImpl implements CreditCardService{
+public class CreditCardServiceImpl implements CreditCardService {
+
   @Autowired
   private CreditCardRepository creditCardRepository;
 

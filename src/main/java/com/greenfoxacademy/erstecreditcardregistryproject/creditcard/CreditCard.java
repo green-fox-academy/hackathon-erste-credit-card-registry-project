@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 @Setter
 @NoArgsConstructor
 public class CreditCard {
+
   @Id
   @Column(name = "card_number", nullable = false)
   private String cardNumber;
