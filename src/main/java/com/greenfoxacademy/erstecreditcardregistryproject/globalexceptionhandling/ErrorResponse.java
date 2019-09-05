@@ -4,8 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
+@Getter
+@Setter
 public class ErrorResponse {
 
   private HttpStatus httpStatus;
@@ -23,37 +27,5 @@ public class ErrorResponse {
     this.message = message;
     this.path = path;
     this.timeStamp = Timestamp.valueOf(LocalDateTime.now());
-  }
-
-  public HttpStatus getHttpStatus() {
-    return httpStatus;
-  }
-
-  public void setHttpStatus(HttpStatus httpStatus) {
-    this.httpStatus = httpStatus;
-  }
-
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-  public String getPath() {
-    return path;
-  }
-
-  public void setPath(String path) {
-    this.path = path;
-  }
-
-  public Timestamp getTimeStamp() {
-    return timeStamp;
-  }
-
-  public void setTimeStamp(Timestamp timeStamp) {
-    this.timeStamp = timeStamp;
   }
 }
