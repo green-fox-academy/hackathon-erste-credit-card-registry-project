@@ -1,7 +1,12 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.contactdetails;
 
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
+@NoArgsConstructor
 public class ContactDetailsServiceImpl implements ContactDetailsService{
 
   private ContactDetailsRepository contactDetailsRepository;

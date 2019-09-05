@@ -1,7 +1,12 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
+@NoArgsConstructor
 public class CreditCardServiceImpl implements CreditCardService{
 
   private CreditCardRepository creditCardRepository;
