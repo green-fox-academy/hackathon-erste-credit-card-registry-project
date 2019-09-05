@@ -1,7 +1,9 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreditCardServiceImpl implements CreditCardService{
 
   private CreditCardRepository creditCardRepository;
@@ -22,7 +24,6 @@ public class CreditCardServiceImpl implements CreditCardService{
 
   @Override
   public void saveCard(CreditCard creditCard) {
-
   }
 
   @Override

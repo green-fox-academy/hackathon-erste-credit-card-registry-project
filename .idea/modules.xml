@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/erste-credit-card-registry-project.iml" filepath="$PROJECT_DIR$/.idea/modules/erste-credit-card-registry-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erste-credit-card-registry-project.main.iml" filepath="$PROJECT_DIR$/.idea/modules/erste-credit-card-registry-project.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erste-credit-card-registry-project.test.iml" filepath="$PROJECT_DIR$/.idea/modules/erste-credit-card-registry-project.test.iml" />
     </modules>
   </component>
 </project>
