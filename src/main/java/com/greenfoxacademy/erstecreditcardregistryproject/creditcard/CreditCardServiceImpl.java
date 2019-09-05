@@ -66,7 +66,7 @@ public class CreditCardServiceImpl implements CreditCardService {
   public boolean isInputCardInvalid(CreditCardInputDTO creditCardInputDTO) {
     return creditCardInputDTO.getCardNumber().equals(null) || creditCardInputDTO.getType().equals(null)
             || creditCardInputDTO.getCvv()==null || creditCardInputDTO.getOwner().equals(null)
-            || creditCardInputDTO.getContact().isEmpty();
+            || creditCardInputDTO.getContact().isEmpty()|| creditCardRepository.findCreditCardByCardNumber(creditCardInputDTO.getCardNumber())!=null;
   }
 
   public CreditCard getCreditCardReady(CreditCardInputDTO creditCardInputDTO){
