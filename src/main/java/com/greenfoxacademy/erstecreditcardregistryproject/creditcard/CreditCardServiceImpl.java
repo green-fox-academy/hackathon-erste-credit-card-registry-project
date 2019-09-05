@@ -46,6 +46,6 @@ public class CreditCardServiceImpl implements CreditCardService {
       creditCardRepository.findCreditCardByCardNumber(cardNumber).setDisabled(true);
       return new ResponseEntity<>("This card has been blocked", HttpStatus.OK);
     }
-    return new ResponseEntity<>("Error: There is no card with this number.", HttpStatus.BAD_GATEWAY);
+    return new ResponseEntity<>("Error: There is no card with this number.", HttpStatus.NOT_FOUND);
   }
 }
