@@ -20,4 +20,8 @@ public class CreditCard {
     private String owner;
     private String type;
     private String contact;
+
+  public CreditCard(String cardNumber){
+    this.cardNumber = cardNumber;
+  }
 }
