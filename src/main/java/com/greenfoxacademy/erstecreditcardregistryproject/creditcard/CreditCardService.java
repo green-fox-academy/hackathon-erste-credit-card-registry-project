@@ -11,4 +11,5 @@ public interface CreditCardService {
   ResponseEntity<String> findByCardNumber(String cardNumber) ;
   void saveCard(CreditCard creditCard);
   void deleteCard(CreditCard creditCard);
+  ResponseEntity<String> blockCard(String cardNumber);
 }

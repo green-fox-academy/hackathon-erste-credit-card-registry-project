@@ -38,4 +38,14 @@ public class CreditCardServiceImpl implements CreditCardService {
   @Override
   public void deleteCard(CreditCard creditCard) {
   }
+
+  @Override
+  public ResponseEntity<String> blockCard(String cardNumber) {
+
+    if (creditCardRepository.findCreditCardByCardNumber(cardNumber) != null) {
+      creditCardRepository.findCreditCardByCardNumber(cardNumber).setDisabled(true);
+      return new ResponseEntity<>("This card has been blocked", HttpStatus.OK);
+    }
+    return new ResponseEntity<>("Error: There is no card with this number.", HttpStatus.BAD_GATEWAY);
+  }
 }
