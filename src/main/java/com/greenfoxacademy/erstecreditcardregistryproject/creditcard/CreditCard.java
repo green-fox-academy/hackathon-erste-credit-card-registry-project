@@ -1,21 +1,31 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetails;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class CreditCard {
+
+  @Id
+  @Column(name = "card_number", nullable = false)
+  private String cardNumber;
 
   @Column(name = "card_type", nullable = false)
   private CreditCardType cardType;
-
-  @Column(name = "card_number", nullable = false)
-  private String cardNumber;
 
   @Column(name = "expiration_date", nullable = false) // MM/YY format kéne
   private String validThru;
@@ -29,16 +39,18 @@ public class CreditCard {
   @Column(name = "owner")
   private String owner;
 
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "creditcard", fetch = FetchType.LAZY)
   @Column(name = "contact_info")
-  private ContactDetails contact;
+  private List<ContactDetails> contact;
 
-  public CreditCard() {
+  public CreditCard(String cardNumber) {
+    this.cardNumber = cardNumber;
   }
 
-  public CreditCard(CreditCardType cardType, String cardNumber, String validThru, String hashCode,
-                    boolean disabled, String owner, ContactDetails contact) {
-    this.cardType = cardType;
+  public CreditCard(String cardNumber, CreditCardType cardType, String validThru, String hashCode,
+                    boolean disabled, String owner, List<ContactDetails> contact) {
     this.cardNumber = cardNumber;
+    this.cardType = cardType;
     this.validThru = validThru;
     this.hashCode = hashCode;
     this.disabled = disabled;
