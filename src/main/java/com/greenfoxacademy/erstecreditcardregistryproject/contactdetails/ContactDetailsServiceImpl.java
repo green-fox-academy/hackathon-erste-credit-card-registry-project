@@ -2,11 +2,14 @@ package com.greenfoxacademy.erstecreditcardregistryproject.contactdetails;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ContactDetailsServiceImpl implements ContactDetailsService{
 
   private ContactDetailsRepository contactDetailsRepository;
 
-  public ContactDetailsServiceImpl(ContactDetailsRepository contactDetailsRepository){
+  public ContactDetailsServiceImpl(ContactDetailsRepository contactDetailsRepository) {
     this.contactDetailsRepository = contactDetailsRepository;
   }
 
@@ -22,11 +25,9 @@ public class ContactDetailsServiceImpl implements ContactDetailsService{
 
   @Override
   public void saveContact(ContactDetails contactDetails) {
-
   }
 
   @Override
   public void deleteContact(ContactDetails contactDetails) {
-
   }
 }

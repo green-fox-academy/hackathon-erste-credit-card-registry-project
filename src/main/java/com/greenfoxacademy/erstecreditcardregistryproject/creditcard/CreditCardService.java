@@ -1,10 +1,7 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
 public interface CreditCardService {
 
   List<CreditCard> findAll();

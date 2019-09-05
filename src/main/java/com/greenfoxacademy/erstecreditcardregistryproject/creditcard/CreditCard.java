@@ -9,7 +9,7 @@ public class CreditCard {
   @Id
   String creditCardNumber;
 
-  public CreditCard(){}
+  public CreditCard() {}
 
   public CreditCard(String creditCardNumber){
     this.creditCardNumber = creditCardNumber;
