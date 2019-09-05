@@ -22,4 +22,5 @@ public class CreditCardRestController {
     public ResponseEntity<String> getCreditCardById(@PathVariable(name="cardNumber") String cardNumber) {
         return creditCardService.findByCardNumber(cardNumber);
     }
+
 }
