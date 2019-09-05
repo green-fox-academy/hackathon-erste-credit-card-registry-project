@@ -12,11 +12,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CreditCardDTO {
-    private CreditCardType cardType;
-    private String cardNumber;
-    private String validThru;
-    private boolean disabled;
-    private String owner;
-    private String type;
-    private List<ContactDetails> contact;
+
+  private CreditCardType cardType;
+  private String cardNumber;
+  private String validThru;
+  private boolean disabled;
+  private String owner;
+  private String type;
+  private List<ContactDetails> contact;
 }

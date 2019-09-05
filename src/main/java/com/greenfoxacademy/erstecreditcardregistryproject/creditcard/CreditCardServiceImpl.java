@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import org.springframework.stereotype.Service;
 
 @Service
 @NoArgsConstructor
@@ -23,12 +22,15 @@ public class CreditCardServiceImpl implements CreditCardService {
   }
 
   @Override
-  public ResponseEntity<String> findByCardNumber(String cardNumber)  {
+  public ResponseEntity<String> findByCardNumber(String cardNumber) {
     if (creditCardRepository.findCreditCardByCardNumber(cardNumber) == null) {
-      return new ResponseEntity<>("No credit card with this number", HttpStatus.INTERNAL_SERVER_ERROR);
+      return new ResponseEntity<>("No credit card with this number",
+          HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    CreditCardDTO creditCardDto = CreditCardUtil.copyObjectoToDTO(creditCardRepository.findCreditCardByCardNumber(cardNumber));
-    return new ResponseEntity<>(CreditCardUtil.convertCreditCardDTOToJson(creditCardDto), HttpStatus.OK);
+    CreditCardDTO creditCardDto = CreditCardUtil
+        .copyObjectoToDTO(creditCardRepository.findCreditCardByCardNumber(cardNumber));
+    return new ResponseEntity<>(CreditCardUtil.convertCreditCardDTOToJson(creditCardDto),
+        HttpStatus.OK);
   }
 
   @Override
