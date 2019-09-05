@@ -19,7 +19,6 @@ public class ContactDetails {
   private ContactDetailsType contactType;
   private String contactInfo;
   @ManyToOne
-  @JoinColumn(name = "credit_card_number")
   private CreditCard creditCard;
 
 
