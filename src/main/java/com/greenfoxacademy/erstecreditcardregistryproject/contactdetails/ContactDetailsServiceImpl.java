@@ -1,17 +1,16 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.contactdetails;
 
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@NoArgsConstructor
 public class ContactDetailsServiceImpl implements ContactDetailsService{
-
+  @Autowired
   private ContactDetailsRepository contactDetailsRepository;
-
-  public ContactDetailsServiceImpl(ContactDetailsRepository contactDetailsRepository){
-    this.contactDetailsRepository = contactDetailsRepository;
-  }
 
   @Override
   public List<ContactDetails> findAllContact() {
