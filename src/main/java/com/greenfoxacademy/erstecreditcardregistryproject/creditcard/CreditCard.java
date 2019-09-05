@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,8 +38,7 @@ public class CreditCard {
   @Column(name = "owner")
   private String owner;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "creditcard", fetch = FetchType.LAZY)
-  @Column(name = "contact_info")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "creditCard", fetch = FetchType.LAZY)
   private List<ContactDetails> contact;
 
   public CreditCard(String cardNumber) {
