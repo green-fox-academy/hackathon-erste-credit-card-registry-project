@@ -1,23 +1,35 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
+
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetails;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 public class CreditCard {
+    @Id
+    private String cardNumber;
+    private String cardType;
+    private String validThru;
+    private boolean disabled;
+    private String owner;
+    private String type;
+    private String contact;
 
   @Id
   @Column(name = "card_number", nullable = false)

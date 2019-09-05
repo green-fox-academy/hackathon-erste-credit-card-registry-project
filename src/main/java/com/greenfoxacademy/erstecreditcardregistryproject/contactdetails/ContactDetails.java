@@ -1,11 +1,10 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.contactdetails;
 
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCard;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
 
 @Entity
 @Getter
@@ -25,30 +24,6 @@ public class ContactDetails {
 
   public ContactDetails(ContactDetailsType contactType, String contactInfo){
     this.contactType = contactType;
-    this.contactInfo = contactInfo;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public ContactDetailsType getContactType() {
-    return contactType;
-  }
-
-  public void setContactType(ContactDetailsType contactType) {
-    this.contactType = contactType;
-  }
-
-  public String getContactInfo() {
-    return contactInfo;
-  }
-
-  public void setContactInfo(String contactInfo) {
     this.contactInfo = contactInfo;
   }
 }
