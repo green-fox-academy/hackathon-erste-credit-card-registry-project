@@ -1,11 +1,9 @@
-package com.greenfoxacademy.erstecreditcardregistryproject.app;
+package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCardDTO;
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCardInputDTO;
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCardService;
-import com.greenfoxacademy.erstecreditcardregistryproject.utility.CreditCardUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,5 +23,11 @@ public class CreditCardRestController {
     @GetMapping("/{cardNumber}")
     public ResponseEntity<String> getCreditCardById(@PathVariable(name="cardNumber") String cardNumber) {
         return creditCardService.findByCardNumber(cardNumber);
+    }
+
+
+    @PutMapping("/{cardNumber}")
+    public ResponseEntity<String> blockCreditCard(@PathVariable(name = "cardNumber") String cardNumber) {
+        return creditCardService.blockCard(cardNumber);
     }
 }

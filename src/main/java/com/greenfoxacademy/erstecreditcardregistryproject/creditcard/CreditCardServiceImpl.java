@@ -4,6 +4,7 @@ package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetails;
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetailsServiceImpl;
 import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FiveHundredException;
+import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FourOFourException;
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.ContactDetailsUtil;
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.CreditCardUtil;
 import lombok.NoArgsConstructor;
@@ -14,9 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
 
 @Service
 @NoArgsConstructor
@@ -78,5 +76,16 @@ public class CreditCardServiceImpl implements CreditCardService {
                creditCardInputDTO.getValidThru(),hash, false, creditCardInputDTO.getOwner(), contactDetails);
     contactDetailsService.setCreditCardToContactList(contactDetails, resultCard);
     return resultCard;
+  }
+
+  @Override
+  public ResponseEntity<String> blockCard(String cardNumber) {
+
+    if (creditCardRepository.findCreditCardByCardNumber(cardNumber) != null) {
+      creditCardRepository.findCreditCardByCardNumber(cardNumber).setDisabled(true);
+      return new ResponseEntity<>("This card has been blocked", HttpStatus.OK);
+    }else{
+      throw new FourOFourException("Sorry, no such credit card could be found");
+    }
   }
 }
