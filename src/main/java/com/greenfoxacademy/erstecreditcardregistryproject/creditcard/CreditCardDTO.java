@@ -4,6 +4,7 @@ import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.Contact
 
 import java.util.List;
 
+import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetailsDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,5 @@ public class CreditCardDTO {
     private String validThru;
     private boolean disabled;
     private String owner;
-    private String type;
-    private List<ContactDetails> contact;
+    private List<ContactDetailsDTO> contact;
 }
