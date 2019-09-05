@@ -1,5 +1,7 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.contactdetails;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCard;
 import javax.persistence.*;
 import lombok.Getter;

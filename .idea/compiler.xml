@@ -5,6 +5,8 @@
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="com.greenfoxacademy.erste-credit-card-registry-project.main" target="1.8" />
+      <module name="com.greenfoxacademy.erste-credit-card-registry-project.test" target="1.8" />
       <module name="erste-credit-card-registry-project.main" target="1.8" />
       <module name="erste-credit-card-registry-project.test" target="1.8" />
     </bytecodeTargetLevel>
