@@ -1,11 +1,10 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.contactdetails;
 
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCard;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
 
 @Entity
 @Getter
@@ -20,7 +19,6 @@ public class ContactDetails {
   private ContactDetailsType contactType;
   private String contactInfo;
   @ManyToOne
-  @JoinColumn(name = "credit_card_number")
   private CreditCard creditCard;
 
 
