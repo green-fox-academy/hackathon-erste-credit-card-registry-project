@@ -4,10 +4,13 @@ package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetails;
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetailsServiceImpl;
 import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FiveHundredException;
+import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FourOFourException;
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.ContactDetailsUtil;
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.CreditCardUtil;
 import lombok.NoArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +21,9 @@ import java.util.List;
 @Service
 @NoArgsConstructor
 public class CreditCardServiceImpl implements CreditCardService {
+
+  private static final Logger logger =
+      LoggerFactory.getLogger(CreditCardRestController.class);
 
   @Autowired
   private CreditCardRepository creditCardRepository;
@@ -33,7 +39,8 @@ public class CreditCardServiceImpl implements CreditCardService {
   @Override
   public ResponseEntity findByCardNumber(String cardNumber) {
     if (creditCardRepository.findCreditCardByCardNumber(cardNumber) == null) {
-      throw new FiveHundredException("No credit card with this number");
+      logger.error("No credit card with this number: " + cardNumber);
+      throw new FiveHundredException("No credit card with this number: " + cardNumber);
     }else{
     CreditCardDTO creditCardDto = CreditCardUtil.copyObjectoToDTO(creditCardRepository.findCreditCardByCardNumber(cardNumber));
     return new ResponseEntity (CreditCardUtil.copyObjectoToDTO(creditCardRepository.findCreditCardByCardNumber(cardNumber)), HttpStatus.OK);
@@ -52,6 +59,7 @@ public class CreditCardServiceImpl implements CreditCardService {
 
   public ResponseEntity registerCard(CreditCardInputDTO creditCardInputDTO) {
     if(isInputCardInvalid(creditCardInputDTO)){
+      logger.error("Something missing");
       throw new FiveHundredException("Something missing");
     }else {
       CreditCard creditCard = getCreditCardReady(creditCardInputDTO);
@@ -75,5 +83,17 @@ public class CreditCardServiceImpl implements CreditCardService {
                creditCardInputDTO.getValidThru(),hash, false, creditCardInputDTO.getOwner(), contactDetails);
     contactDetailsService.setCreditCardToContactList(contactDetails, resultCard);
     return resultCard;
+  }
+
+  @Override
+  public ResponseEntity<String> blockCard(String cardNumber) {
+
+    if (creditCardRepository.findCreditCardByCardNumber(cardNumber) != null) {
+      creditCardRepository.findCreditCardByCardNumber(cardNumber).setDisabled(true);
+      return new ResponseEntity<>("This card has been blocked", HttpStatus.OK);
+    }else{
+      logger.error("No credit card found with this number: " + cardNumber);
+      throw new FourOFourException("Sorry, no such credit card could be found" + cardNumber);
+    }
   }
 }

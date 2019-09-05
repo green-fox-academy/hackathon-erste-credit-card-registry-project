@@ -1,9 +1,7 @@
-package com.greenfoxacademy.erstecreditcardregistryproject.app;
+package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
-import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCardInputDTO;
-import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCardService;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +19,20 @@ public class CreditCardRestController {
 
     @PostMapping("")
     public ResponseEntity registerCard(@RequestBody CreditCardInputDTO creditCardInputDTO){
+        logger.info("Card has been added: " + creditCardInputDTO.getCardNumber());
         return creditCardService.registerCard(creditCardInputDTO);
     }
 
     @GetMapping("/{cardNumber}")
     public ResponseEntity<String> getCreditCardById(@PathVariable(name="cardNumber") String cardNumber) {
-        logger.info("Hello na!");
+        logger.info("Querying card: " + cardNumber);
         return creditCardService.findByCardNumber(cardNumber);
+    }
+
+    @PutMapping("/{cardNumber}")
+    public ResponseEntity<String> blockCreditCard(@PathVariable(name = "cardNumber") String cardNumber) {
+        logger.info("Card has been blocked: " + cardNumber);
+        logger.error("");
+        return creditCardService.blockCard(cardNumber);
     }
 }
