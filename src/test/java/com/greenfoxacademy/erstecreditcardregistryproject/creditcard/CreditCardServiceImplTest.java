@@ -2,6 +2,7 @@ package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
 import com.google.gson.Gson;
 import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FiveHundredException;
+import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FourOFourException;
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.CreditCardUtil;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,6 +21,7 @@ import static org.mockito.Mockito.when;
 public class CreditCardServiceImplTest {
   private CreditCardDTO creditCardDTO;
   private CreditCard creditCard;
+  private ResponseEntity responseEntity;
 
   @InjectMocks
   private CreditCardServiceImpl creditCardService;
@@ -44,7 +46,7 @@ public class CreditCardServiceImplTest {
   public void testFindCreditCardByCardNumberAndReturnsOk() {
 
     when(creditCardRepository.findCreditCardByCardNumber(anyString())).thenReturn(creditCard);
-    ResponseEntity responseEntity = creditCardService.findByCardNumber("1111-2222-3333-4444");
+    responseEntity = creditCardService.findByCardNumber("1111-2222-3333-4444");
 
     Assert.assertEquals(responseEntity.getBody(), new Gson().toJson(creditCardDTO));
     Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
@@ -56,5 +58,22 @@ public class CreditCardServiceImplTest {
     when(creditCardRepository.findCreditCardByCardNumber(anyString())).thenReturn(null);
 
     Assert.assertNull(creditCardService.findByCardNumber("1111-2222-3333-5555"));
+  }
+
+  @Test
+  public void testBlockCardAndReturnsOk() {
+    when(creditCardRepository.findCreditCardByCardNumber(anyString())).thenReturn(creditCard);
+    responseEntity = creditCardService.blockCard("1111-2222-3333-4444");
+
+    Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+    Assert.assertEquals(responseEntity.getBody(), "This card has been blocked");
+    Assert.assertTrue(creditCard.isDisabled());
+  }
+
+  @Test(expected = FourOFourException.class)
+  public void testBlockCardAndReturnsNotFoundError() {
+    when(creditCardRepository.findCreditCardByCardNumber(anyString())).thenReturn(null);
+
+    Assert.assertNull(creditCardService.blockCard("1111-2222-3333-5555"));
   }
 }
