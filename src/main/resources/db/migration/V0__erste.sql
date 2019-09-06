@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `erste`.`contact_details` (
     `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
     `contact_info` VARCHAR(255) NULL DEFAULT NULL,
     `contact_type` INT(11) NOT NULL,
-    `credit_card` VARCHAR(255) NULL DEFAULT NULL,
+    `credit_card_card_number` VARCHAR(255) NULL DEFAULT NULL,
     PRIMARY KEY (`id`));
 
 -- ----------------------------------------------------------------------------
