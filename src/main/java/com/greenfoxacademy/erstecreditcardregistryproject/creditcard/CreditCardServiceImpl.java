@@ -1,10 +1,11 @@
-
 package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
+import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FourOFourException;
+import com.google.gson.Gson;
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetails;
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetailsServiceImpl;
 import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FiveHundredException;
-import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FourOFourException;
+
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.ContactDetailsUtil;
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.CreditCardUtil;
 import lombok.NoArgsConstructor;
@@ -37,13 +38,13 @@ public class CreditCardServiceImpl implements CreditCardService {
   }
 
   @Override
-  public ResponseEntity findByCardNumber(String cardNumber) {
+  public ResponseEntity<String> findByCardNumber(String cardNumber) {
     if (creditCardRepository.findCreditCardByCardNumber(cardNumber) == null) {
       logger.error("No credit card with this number: " + cardNumber);
       throw new FiveHundredException("No credit card with this number: " + cardNumber);
     }else{
     CreditCardDTO creditCardDto = CreditCardUtil.copyObjectoToDTO(creditCardRepository.findCreditCardByCardNumber(cardNumber));
-    return new ResponseEntity (CreditCardUtil.copyObjectoToDTO(creditCardRepository.findCreditCardByCardNumber(cardNumber)), HttpStatus.OK);
+    return new ResponseEntity<> (new Gson().toJson(creditCardDto), HttpStatus.OK);
     }
   }
 
@@ -68,13 +69,13 @@ public class CreditCardServiceImpl implements CreditCardService {
     }
   }
 
-  public boolean isInputCardInvalid(CreditCardInputDTO creditCardInputDTO) {
-    return creditCardInputDTO.getCardNumber().equals(null) || creditCardInputDTO.getType().equals(null)
-            || creditCardInputDTO.getCvv()==null || creditCardInputDTO.getOwner().equals(null)
+  private boolean isInputCardInvalid(CreditCardInputDTO creditCardInputDTO) {
+    return creditCardInputDTO.getCardNumber() == null || creditCardInputDTO.getType().equals(null)
+            || creditCardInputDTO.getCvv() == null || creditCardInputDTO.getOwner().equals(null)
             || creditCardInputDTO.getContact().isEmpty()|| creditCardRepository.findCreditCardByCardNumber(creditCardInputDTO.getCardNumber())!=null;
   }
 
-  public CreditCard getCreditCardReady(CreditCardInputDTO creditCardInputDTO){
+  private CreditCard getCreditCardReady(CreditCardInputDTO creditCardInputDTO){
     String hash = new BCrypt().hashpw(creditCardInputDTO.getCardNumber() +  creditCardInputDTO.getValidThru()
             + creditCardInputDTO.getCvv(), BCrypt.gensalt(12));
     List<ContactDetails> contactDetails = ContactDetailsUtil.transformDtoToContact(creditCardInputDTO.getContact());
