@@ -2,6 +2,8 @@ package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.carddtos.CreditCardInputDTO;
+import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.carddtos.ValidationInputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +36,10 @@ public class CreditCardRestController {
         logger.info("Card has been blocked: " + cardNumber);
         logger.error("");
         return creditCardService.blockCard(cardNumber);
+    }
+
+    @PostMapping("/validate")
+    public ResponseEntity valiadteInput(@RequestBody ValidationInputDTO validationInputDTO){
+       return creditCardService.validateCard(validationInputDTO);
     }
 }

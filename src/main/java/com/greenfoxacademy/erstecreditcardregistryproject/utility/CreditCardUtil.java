@@ -1,7 +1,7 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.utility;
 
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCard;
-import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCardDTO;
+import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.carddtos.CreditCardDTO;
 
 public class CreditCardUtil {
 
