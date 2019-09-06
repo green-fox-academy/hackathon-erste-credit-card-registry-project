@@ -5,6 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CreditCardRepository extends CrudRepository<CreditCard, String> {
-
   CreditCard findCreditCardByCardNumber(String cardNumber);
 }
