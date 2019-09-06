@@ -114,6 +114,10 @@ public class ValidationUtil {
     } catch (ParseException e) {
       e.printStackTrace();
     }
-    return expiry.after(Timestamp.valueOf(LocalDateTime.now()));
+    if(expiry.after(Timestamp.valueOf(LocalDateTime.now()))){
+      return true;
+    }else{
+      throw new FiveHundredException("Expired!");
+    }
   }
 }
