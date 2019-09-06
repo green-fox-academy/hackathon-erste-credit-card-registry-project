@@ -45,4 +45,5 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.2.3'
     compile 'org.mindrot:jbcrypt:0.4'
     implementation 'org.flywaydb:flyway-core:5.2.4'
+    compile "org.springframework.boot:spring-boot-starter-actuator"
 }
