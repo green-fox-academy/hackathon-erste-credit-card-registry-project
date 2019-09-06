@@ -1,6 +1,7 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.utility;
 
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetailsDTO;
+import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.carddtos.CreditCardInputDTO;
 import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FiveHundredException;
 
 import java.util.Arrays;
@@ -80,5 +81,23 @@ public class ValidationUtil {
       }
     }
     return true;
+  }
+
+  public static boolean checkInputConsistency(CreditCardInputDTO inputDTO) {
+    boolean flag;
+    if (inputDTO.getType().toUpperCase().startsWith("V")) {
+      flag = inputDTO.getCardNumber().startsWith("4");
+    } else if (inputDTO.getType().toUpperCase().startsWith("MAS")) {
+      flag = inputDTO.getCardNumber().startsWith("5");
+    } else if (inputDTO.getType().toUpperCase().startsWith("MAE")) {
+      flag = inputDTO.getCardNumber().startsWith("6");
+    } else {
+      flag = false;
+    }
+    if (!flag) {
+      throw new FiveHundredException("There is an incoherence between cardtype and number");
+    } else {
+      return flag;
+    }
   }
 }

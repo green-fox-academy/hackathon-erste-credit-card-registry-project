@@ -11,7 +11,7 @@ public class ContactDetailsDTO {
   private String contactType;
   private String contactInfo;
 
-  public ContactDetailsDTO(ContactDetails contactDetails){
+  public ContactDetailsDTO(ContactDetails contactDetails) {
     this.contactType = contactDetails.getContactType().name();
     this.contactInfo = contactDetails.getContactInfo();
   }

@@ -1,6 +1,8 @@
 
 package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
+import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FourOFourException;
+import com.google.gson.Gson;
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetails;
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetailsServiceImpl;
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.carddtos.CreditCardDTO;
@@ -8,7 +10,7 @@ import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.carddtos.Cr
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.carddtos.ValidationInputDTO;
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.carddtos.ValidationResponseDTO;
 import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FiveHundredException;
-import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FourOFourException;
+
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.ContactDetailsUtil;
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.CreditCardUtil;
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.ValidationUtil;
@@ -40,12 +42,12 @@ public class CreditCardServiceImpl implements CreditCardService {
   }
 
   @Override
-  public ResponseEntity findByCardNumber(String cardNumber) {
+  public ResponseEntity<String> findByCardNumber(String cardNumber) {
     if (creditCardRepository.findCreditCardByCardNumber(cardNumber) == null) {
       throw new FiveHundredException("No credit card with this number");
-    } else {
-      CreditCardDTO creditCardDto = CreditCardUtil.copyObjectoToDTO(creditCardRepository.findCreditCardByCardNumber(cardNumber));
-      return new ResponseEntity(CreditCardUtil.copyObjectoToDTO(creditCardRepository.findCreditCardByCardNumber(cardNumber)), HttpStatus.OK);
+    }else{
+    CreditCardDTO creditCardDto = CreditCardUtil.copyObjectoToDTO(creditCardRepository.findCreditCardByCardNumber(cardNumber));
+    return new ResponseEntity<> (new Gson().toJson(creditCardDto), HttpStatus.OK);
     }
   }
 
@@ -78,7 +80,8 @@ public class CreditCardServiceImpl implements CreditCardService {
               && ValidationUtil.isCvvValid(creditCardInputDTO.getCvv())
               && ValidationUtil.isValidExpiry(creditCardInputDTO.getValidThru())
               && ValidationUtil.isValidType(creditCardInputDTO.getType())
-              && ValidationUtil.checkAllContactDetailVailidty(creditCardInputDTO.getContact());
+              && ValidationUtil.checkAllContactDetailVailidty(creditCardInputDTO.getContact())
+              && ValidationUtil.checkInputConsistency(creditCardInputDTO);
     }
   }
 
@@ -99,7 +102,7 @@ public class CreditCardServiceImpl implements CreditCardService {
       creditCardRepository.findCreditCardByCardNumber(cardNumber).setDisabled(true);
       return new ResponseEntity<>("This card has been blocked", HttpStatus.OK);
     } else {
-      throw new FourOFourException("Sorry, no such credit card could be found");
+      throw new FourOFourException("Error: There is no card with this number.");
     }
   }
 
