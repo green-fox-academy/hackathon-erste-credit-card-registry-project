@@ -1,5 +1,6 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
 
+import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FourOFourException;
 import com.greenfoxacademy.erstecreditcardregistryproject.utility.CreditCardUtil;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,8 @@ public class CreditCardServiceImpl implements CreditCardService {
     if (creditCardRepository.findCreditCardByCardNumber(cardNumber) != null) {
       creditCardRepository.findCreditCardByCardNumber(cardNumber).setDisabled(true);
       return new ResponseEntity<>("This card has been blocked", HttpStatus.OK);
+    } else {
+      throw new FourOFourException("Error: There is no card with this number.");
     }
-    return new ResponseEntity<>("Error: There is no card with this number.", HttpStatus.NOT_FOUND);
   }
 }
