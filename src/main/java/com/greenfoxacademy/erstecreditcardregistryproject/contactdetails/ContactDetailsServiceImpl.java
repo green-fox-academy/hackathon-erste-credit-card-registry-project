@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 @NoArgsConstructor
 public class ContactDetailsServiceImpl implements ContactDetailsService {
+
   @Autowired
   private ContactDetailsRepository contactDetailsRepository;
 

@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface CreditCardService {
-
   List<CreditCard> findAllCards();
   ResponseEntity<String> findByCardNumber(String cardNumber) ;
   void saveCard(CreditCard creditCard);
