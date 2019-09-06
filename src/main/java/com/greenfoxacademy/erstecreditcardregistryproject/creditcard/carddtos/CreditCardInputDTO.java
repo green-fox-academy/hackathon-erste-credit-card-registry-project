@@ -1,4 +1,4 @@
-package com.greenfoxacademy.erstecreditcardregistryproject.creditcard;
+package com.greenfoxacademy.erstecreditcardregistryproject.creditcard.carddtos;
 
 import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.ContactDetailsDTO;
 import lombok.Getter;
