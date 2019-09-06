@@ -23,6 +23,7 @@ repositories {
 flyway {
     url = System.getenv("DATASOURCE_URL")
     user = 'sa'
+    password = 'sa'
 }
 
 dependencies {
