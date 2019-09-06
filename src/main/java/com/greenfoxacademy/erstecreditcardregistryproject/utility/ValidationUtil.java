@@ -4,7 +4,13 @@ import com.greenfoxacademy.erstecreditcardregistryproject.contactdetails.Contact
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.carddtos.CreditCardInputDTO;
 import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FiveHundredException;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class ValidationUtil {
@@ -98,6 +104,20 @@ public class ValidationUtil {
       throw new FiveHundredException("There is an incoherence between cardtype and number");
     } else {
       return flag;
+    }
+  }
+
+  public static boolean checkIfExpiryIsEarlier(CreditCardInputDTO inputDTO) {
+    Date expiry = null;
+    try {
+      expiry = new SimpleDateFormat("MM/YY").parse(inputDTO.getValidThru());
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    if(expiry.after(Timestamp.valueOf(LocalDateTime.now()))){
+      return true;
+    }else{
+      throw new FiveHundredException("Expired!");
     }
   }
 }
