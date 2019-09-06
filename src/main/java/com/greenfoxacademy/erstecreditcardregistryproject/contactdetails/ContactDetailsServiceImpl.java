@@ -1,15 +1,12 @@
 package com.greenfoxacademy.erstecreditcardregistryproject.contactdetails;
 
 import com.greenfoxacademy.erstecreditcardregistryproject.creditcard.CreditCard;
-import com.greenfoxacademy.erstecreditcardregistryproject.utility.ContactDetailsUtil;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 @Service
 @NoArgsConstructor

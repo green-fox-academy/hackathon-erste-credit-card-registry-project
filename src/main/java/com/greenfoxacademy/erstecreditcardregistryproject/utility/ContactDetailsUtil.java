@@ -17,7 +17,8 @@ public class ContactDetailsUtil {
   public static List<ContactDetails> transformDtoToContact(List<ContactDetailsDTO> contactDetailsDTOS){
     List<ContactDetails> contactDetailsList = new ArrayList<>();
     if(!contactDetailsDTOS.isEmpty()){
-    contactDetailsDTOS.stream().forEach(contactDetailsDTO-> contactDetailsList.add(new ContactDetails(contactDetailsDTO)));
+    contactDetailsDTOS.stream()
+        .forEach(contactDetailsDTO-> contactDetailsList.add(new ContactDetails(contactDetailsDTO)));
     }
     return contactDetailsList;
   }

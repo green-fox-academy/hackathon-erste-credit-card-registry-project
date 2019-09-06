@@ -3,6 +3,9 @@ package com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandli
 import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FiveHundredException;
 import com.greenfoxacademy.erstecreditcardregistryproject.globalexceptionhandling.exceptiontypes.FourOFourException;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,7 @@ public class RestExceptionHandler {
     error.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
     error.setMessage(ex.getMessage());
     error.setPath(request.getRequestURI());
+    error.setTimeStamp(Timestamp.valueOf(LocalDateTime.now()));
     return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
@@ -29,6 +33,7 @@ public class RestExceptionHandler {
     error.setHttpStatus(HttpStatus.NOT_FOUND);
     error.setMessage(ex.getMessage());
     error.setPath(request.getRequestURI());
+    error.setTimeStamp(Timestamp.valueOf(LocalDateTime.now()));
     return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
   }
 }
