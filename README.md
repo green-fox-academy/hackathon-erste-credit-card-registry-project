@@ -22,12 +22,12 @@
 
 ## Enviroment variables:
 
-|  Variable name          |  Value                                                                                             |
-|-------------------------|----------------------------------------------------------------------------------------------------|
-|  DATASOURCE_URL         |  jdbc:mysql://{host}:{port}/{SID}  e.g: jdbc:mysql://localhost:3306/**db_name**?serTimezone=GMT-6  | 
-|  DATASOURCE_USERNAME    |  {your db username}                                                                                |
-|  DATASOURCE_PASSWORD    |  {your db password}                                                                                |
-|  HIBERNATE_DIALECT      |  org.hibernate.dialect.MySQL5Dialect                                                               |
+|  Variable name      | Value                                                                                          |
+|---------------------|------------------------------------------------------------------------------------------------|
+| DATASOURCE_URL      | jdbc:mysql://{host}:{port}/{SID} e.g: jdbc:mysql://localhost:3306/db_name?serverTimezone=GMT-6 | 
+| DATASOURCE_USERNAME | {your db username}                                                                             |
+| DATASOURCE_PASSWORD | {your db password}                                                                             |
+| HIBERNATE_DIALECT   | org.hibernate.dialect.MySQL5Dialect                                                            |
 
 ## Setup instructions: 
 
