@@ -85,6 +85,7 @@ public class CreditCardServiceImpl implements CreditCardService {
       return ValidationUtil.isCardNumberValid(creditCardInputDTO.getCardNumber())
               && ValidationUtil.isCvvValid(creditCardInputDTO.getCvv())
               && ValidationUtil.isValidExpiry(creditCardInputDTO.getValidThru())
+              && ValidationUtil.checkIfExpiryIsEarlier(creditCardInputDTO)
               && ValidationUtil.isValidType(creditCardInputDTO.getType())
               && ValidationUtil.checkAllContactDetailVailidty(creditCardInputDTO.getContact())
               && ValidationUtil.checkInputConsistency(creditCardInputDTO);
